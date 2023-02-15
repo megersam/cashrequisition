@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleService {
 
-    @Autowired
+    @Autowired()
     private RoleDao roleDao;
 
     public Role createNewRole(Role role){

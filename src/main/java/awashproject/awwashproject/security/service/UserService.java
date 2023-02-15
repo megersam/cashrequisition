@@ -16,13 +16,13 @@ import java.util.Set;
 
 @Service
 public class UserService {
-    @Autowired
+    @Autowired()
     private UserDao userDao;
 
-    @Autowired
+    @Autowired()
     private RoleDao roleDao;
 
-    @Autowired
+    @Autowired()
     private PasswordEncoder passwordEncoder;
 
 //registering new role and user.
