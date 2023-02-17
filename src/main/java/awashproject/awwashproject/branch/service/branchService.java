@@ -16,4 +16,5 @@ public class branchService {
     public void saveData(branchModel bmodel){
          bdo.saveData(bmodel);
     }
+
 }
