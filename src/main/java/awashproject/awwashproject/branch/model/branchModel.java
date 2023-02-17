@@ -2,6 +2,9 @@ package awashproject.awwashproject.branch.model;
 
 import lombok.Data;
 
+import javax.persistence.*;
+import java.util.Set;
+
 @Data
 public class branchModel {
 
@@ -13,9 +16,17 @@ public class branchModel {
     private String status;
     private String requestType;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "requestData",
+            joinColumns = {
+                    @JoinColumn(name = "reqId")
+            }
+
+    )
+
 //    creating getters and setters.
 
-
+    private Set<requestdata> rdata;
     public Long getId() {
         return id;
     }
@@ -70,5 +81,13 @@ public class branchModel {
 
     public void setRequestType(String requestType) {
         this.requestType = requestType;
+    }
+
+    public Set<requestdata> getRdata() {
+        return rdata;
+    }
+
+    public void setRdata(Set<requestdata> rdata) {
+        this.rdata = rdata;
     }
 }

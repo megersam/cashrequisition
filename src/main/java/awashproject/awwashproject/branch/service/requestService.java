@@ -1,21 +1,17 @@
 package awashproject.awwashproject.branch.service;
 
-
 import awashproject.awwashproject.branch.dao.branchDao;
 import awashproject.awwashproject.branch.model.branchModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class branchService {
+public class requestService {
 
     @Autowired()
-    private branchDao bdo;
-
+    private branchDao bdao;
 
     public void saveData(branchModel bmodel){
-         bdo.saveData(bmodel);
-
+        bdao.saveData(bmodel);
     }
-
 }
