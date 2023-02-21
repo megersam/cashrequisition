@@ -1,38 +1,24 @@
 package awashproject.awwashproject.branch.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class requestdata {
-
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
     private Long denomnstrationId;
     private String qnty;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getDenomnstrationId() {
-        return denomnstrationId;
-    }
-
-    public void setDenomnstrationId(Long denomnstrationId) {
-        this.denomnstrationId = denomnstrationId;
-    }
-
-    public String getQnty() {
-        return qnty;
-    }
-
-    public void setQnty(String qnty) {
-        this.qnty = qnty;
-    }
-
-
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @JoinColumn(name = "req_id")
+  private commonData commondata;
 
 }

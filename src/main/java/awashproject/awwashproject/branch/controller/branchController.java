@@ -1,10 +1,11 @@
 package awashproject.awwashproject.branch.controller;
 
-import awashproject.awwashproject.branch.dao.branchDao;
+import awashproject.awwashproject.branch.dao.commonDataDao;
 import awashproject.awwashproject.branch.dao.moneyNoteDao;
-import awashproject.awwashproject.branch.model.branchModel;
+import awashproject.awwashproject.branch.dao.requestDao;
+import awashproject.awwashproject.branch.dto.request;
+import awashproject.awwashproject.branch.model.commonData;
 import awashproject.awwashproject.branch.model.note;
-import awashproject.awwashproject.branch.service.branchService;
 import awashproject.awwashproject.branch.service.moneyNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,23 +19,30 @@ import java.util.List;
 @RestController
 public class branchController {
 
-    @Autowired()
-    private branchService bservice;
-    @Autowired()
-    private branchDao bdao;
+
     @Autowired()
     private moneyNoteDao mndao;
     @Autowired()
     private moneyNoteService mnservice;
 
-//    post api to send data to database
-    @PostMapping({"/requestApi"})
+    @Autowired()
+    private commonDataDao commondataRepository;
+
+    @Autowired()
+    private requestDao requestRepository;
+
+
+//    post API
+    @PostMapping({"/createNewRequest"})
     @PreAuthorize("hasRole('Admin')")
-    public void saveData(@RequestBody branchModel bmodel){
-        System.out.println("hithere controller is working");
-        System.out.println(bmodel);
-        bservice.saveData(bmodel);
+    public commonData createNewRequest(@RequestBody request r){
+        return commondataRepository.save(r.getCommondata());
     }
+
+
+
+
+
 
 //    get all datas that stored in the database.
 @GetMapping({"/getAllNotes"})
