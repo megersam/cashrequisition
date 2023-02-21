@@ -17,8 +17,8 @@ public class requestdata {
     private Long denomnstrationId;
     private String qnty;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-   @JoinColumn(name = "req_id")
-  private commonData commondata;
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//   @JoinColumn(name = "req_id")
+//  private commonData commondata;
 
 }

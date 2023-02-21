@@ -39,12 +39,16 @@ public class branchController {
         return commondataRepository.save(r.getCommondata());
     }
 
+//    get all request API
+
+    @GetMapping({"/getAllRequests"})
+    @PreAuthorize("hasRole('Admin')")
+    public List<commonData> getAllRequest(){
+       return  commondataRepository.findAll();
+    }
 
 
-
-
-
-//    get all datas that stored in the database.
+//    get all money note stored as refered on demonstration table.
 @GetMapping({"/getAllNotes"})
 @PreAuthorize("hasRole('Admin')")
 public List<note> getAllNote(){

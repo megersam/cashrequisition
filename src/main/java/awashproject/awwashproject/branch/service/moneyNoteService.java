@@ -18,4 +18,8 @@ public class moneyNoteService {
     public List<note> getAllNote(){
         return mnotedao.getAllNote();
     }
+
+//    get list of all requests.
+
+
 }

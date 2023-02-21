@@ -25,6 +25,7 @@ public class commonData {
     private String status;
     private String requestType;
 
+
     @OneToMany(targetEntity = requestdata.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "req_id", referencedColumnName = "id")
     private List<requestdata> requestdatas = new ArrayList<requestdata>();
