@@ -9,12 +9,10 @@ import awashproject.awwashproject.branch.model.note;
 import awashproject.awwashproject.branch.service.moneyNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class branchController {
@@ -45,6 +43,41 @@ public class branchController {
     @PreAuthorize("hasRole('Admin')")
     public List<commonData> getAllRequest(){
        return  commondataRepository.findAll();
+    }
+
+
+//    get single request by id.
+@GetMapping({"/getSingleRequest/{id}"})
+@PreAuthorize("hasRole('Admin')")
+public commonData getSingleRequest(@PathVariable Integer id){
+    Optional<commonData> commondatas = commondataRepository.findById(id);
+    if(commondatas.isPresent()){
+        return commondatas.get();
+    }
+    else
+    {
+        throw new RuntimeException(" cant get request data bi this id" +id);
+    }
+}
+
+// delete request by id
+    @DeleteMapping({"/deleteSingleRequest/{id}"})
+    @PreAuthorize("hasRole('Admin')")
+  public Optional<String> deleteSingleRequest(@PathVariable Integer id){
+        return commondataRepository.findById(id)
+                .map(commonData -> {
+                    commondataRepository.delete(commonData);
+                    return "deleted done with id no of" +id;
+                });
+
+    }
+
+//    update request data using id.
+    @PutMapping({"/updateSingleRequest/{id}"})
+    @PreAuthorize("hasRole('Admin')")
+    public commonData updateSingleRequest(@PathVariable Integer id, @RequestBody commonData commondatas){
+        commondatas.setId(id);
+        return commondataRepository.save(commondatas);
     }
 
 
