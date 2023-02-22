@@ -73,6 +73,7 @@ public commonData getSingleRequest(@PathVariable Integer id){
     }
 
 //    update request data using id.
+
     @PutMapping({"/updateSingleRequest/{id}"})
     @PreAuthorize("hasRole('Admin')")
     public commonData updateSingleRequest(@PathVariable Integer id, @RequestBody commonData commondatas){
@@ -81,7 +82,8 @@ public commonData getSingleRequest(@PathVariable Integer id){
     }
 
 
-//    get all money note stored as refered on demonstration table.
+
+    //    get all money note stored as refered on demonstration table.
 @GetMapping({"/getAllNotes"})
 @PreAuthorize("hasRole('Admin')")
 public List<note> getAllNote(){
