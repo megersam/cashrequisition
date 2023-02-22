@@ -32,7 +32,7 @@ public class branchController {
 
 //    post API
     @PostMapping({"/createNewRequest"})
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Branch Account Holder')")
     public commonData createNewRequest(@RequestBody request r){
         return commondataRepository.save(r.getCommondata());
     }
@@ -40,7 +40,7 @@ public class branchController {
 //    get all request API
 
     @GetMapping({"/getAllRequests"})
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Branch Account Holder')")
     public List<commonData> getAllRequest(){
        return  commondataRepository.findAll();
     }
@@ -48,7 +48,7 @@ public class branchController {
 
 //    get single request by id.
 @GetMapping({"/getSingleRequest/{id}"})
-@PreAuthorize("hasRole('Admin')")
+@PreAuthorize("hasRole('Branch Account Holder')")
 public commonData getSingleRequest(@PathVariable Integer id){
     Optional<commonData> commondatas = commondataRepository.findById(id);
     if(commondatas.isPresent()){
@@ -62,7 +62,7 @@ public commonData getSingleRequest(@PathVariable Integer id){
 
 // delete request by id
     @DeleteMapping({"/deleteSingleRequest/{id}"})
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Branch Account Holder')")
   public Optional<String> deleteSingleRequest(@PathVariable Integer id){
         return commondataRepository.findById(id)
                 .map(commonData -> {
@@ -75,7 +75,7 @@ public commonData getSingleRequest(@PathVariable Integer id){
 //    update request data using id.
 
     @PutMapping({"/updateSingleRequest/{id}"})
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Branch Account Holder')")
     public commonData updateSingleRequest(@PathVariable Integer id, @RequestBody commonData commondatas){
         commondatas.setId(id);
         return commondataRepository.save(commondatas);
@@ -85,7 +85,7 @@ public commonData getSingleRequest(@PathVariable Integer id){
 
     //    get all money note stored as refered on demonstration table.
 @GetMapping({"/getAllNotes"})
-@PreAuthorize("hasRole('Admin')")
+@PreAuthorize("hasRole('Branch Account Holder')")
 public List<note> getAllNote(){
     return (List<note>) mndao.getAllNote();
 }
